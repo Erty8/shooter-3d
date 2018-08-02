@@ -6,6 +6,14 @@ public class temaslayokol : MonoBehaviour {
     public float sayac;
 	public GameObject patlama;
 	public GameObject player_patlama;
+    GameObject oyunkontrol;
+    oyunkontrol kontrol;
+    private void Start()
+    {
+        oyunkontrol = GameObject.FindGameObjectWithTag("oyunkontrol");
+        kontrol = oyunkontrol.GetComponent<oyunkontrol>();
+       
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag!="sınır") {
@@ -17,14 +25,15 @@ public class temaslayokol : MonoBehaviour {
                 Destroy(gameObject);
 				Instantiate (patlama,transform.position,transform.rotation);
                 sayac = 0;
+                kontrol.ScoreArttır(10);
                 
-
             }
 
         }
         if (other.tag == "Player")
         {
             Instantiate(player_patlama, other.transform.position, other.transform.rotation);
+            kontrol.oyunbitti();
         }
     }
 
