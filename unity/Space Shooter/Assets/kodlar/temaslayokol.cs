@@ -8,6 +8,7 @@ public class temaslayokol : MonoBehaviour {
 	public GameObject player_patlama;
     GameObject oyunkontrol;
     oyunkontrol kontrol;
+   
     private void Start()
     {
         oyunkontrol = GameObject.FindGameObjectWithTag("oyunkontrol");
