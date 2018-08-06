@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class oyunkontrol : MonoBehaviour {
 
     public GameObject Asteroid;
+    public GameObject Enemy;
     public Vector3 randomPos;
     public float baslangıcbekleme;
     public float olusturmabekleme;
@@ -18,7 +19,9 @@ public class oyunkontrol : MonoBehaviour {
     public Text gameover;
 
     void Start () {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         StartCoroutine (olustur());
+        StartCoroutine (olustur1());
         score = 0;
         text.text = "score = " + score;
 	}
@@ -48,6 +51,28 @@ public class oyunkontrol : MonoBehaviour {
             if (oyunbittikontrol)
                 yenidenbaslakontrol = true;
                 break;
+
+        }
+    }
+
+    IEnumerator olustur1()
+    {
+        yield return new WaitForSeconds(5);
+        while (true)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Vector3 vec1 = new Vector3(Random.Range(-randomPos.x, randomPos.x), 0, randomPos.z);
+                Instantiate(Enemy, vec1,Quaternion.Euler(0,180,0));
+                yield return new WaitForSeconds(6);
+                if (oyunbittikontrol)
+                    break;
+
+            }
+            yield return new WaitForSeconds(5);
+            if (oyunbittikontrol)
+                yenidenbaslakontrol = true;
+            break;
 
         }
     }
