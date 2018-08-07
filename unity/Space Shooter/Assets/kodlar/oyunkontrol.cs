@@ -38,11 +38,12 @@ public class oyunkontrol : MonoBehaviour {
         yield return new WaitForSeconds (baslangıcbekleme);
         while (true)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Vector3 vec = new Vector3(Random.Range(-randomPos.x, randomPos.x), 0, randomPos.z);
                 Instantiate(Asteroid,vec, Quaternion.identity);
                 yield return new WaitForSeconds(olusturmabekleme);
+                i = 0;
                 if (oyunbittikontrol)
                     break;
 
@@ -69,7 +70,8 @@ public class oyunkontrol : MonoBehaviour {
                     break;
 
             }
-            yield return new WaitForSeconds(5);
+            gameover.text = "Stage Done";
+            //yield return new WaitForSeconds(5);
             if (oyunbittikontrol)
                 yenidenbaslakontrol = true;
             break;

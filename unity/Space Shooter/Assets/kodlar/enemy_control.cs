@@ -22,12 +22,12 @@ public class enemy_control : MonoBehaviour {
 
 
     
-    void FixedUpdate () {
-        while (true)
-        {
+    void Update () {
 
+        if ( Time.time > ateszamanı)
+        {
             ateszamanı = Time.time + atessuresi;
-            Instantiate(mermi, MermiNereden.position, Quaternion.identity);
+            Instantiate(mermi, MermiNereden.position, Quaternion.Euler(0,180,0));
         }
     }
 }

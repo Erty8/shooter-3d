@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player_control : MonoBehaviour {
 
@@ -18,12 +19,32 @@ public class player_control : MonoBehaviour {
     public float atessuresi ;
     public GameObject mermi;
     public Transform MermiNereden;
+    public GameObject patlama;
+    public Text health;
+    int sayac = 0;
+    int can = 3;
 	void Start () {
         fizik = GetComponent<Rigidbody>();
+        health.text = "health = 3";
         
 
     }
-     void Update()
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "mermi") {
+           Destroy(other.gameObject);
+           sayac++;
+           health.text = "health= " + (can - sayac);
+           
+           if (sayac == 3)
+            {
+                Destroy(gameObject);
+                Instantiate(patlama, transform.position, transform.rotation);
+            }
+        }
+    }
+    void Update()
     {
         if (Input.GetButton("Fire1") && Time.time>ateszamanı)
         {
