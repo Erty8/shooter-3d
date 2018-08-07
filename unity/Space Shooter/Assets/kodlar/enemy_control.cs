@@ -6,6 +6,10 @@ public class enemy_control : MonoBehaviour {
 
     Rigidbody fizik;
     public float hız;
+    float ateszamanı = 0;
+    public GameObject mermi;
+    public Transform MermiNereden;
+    public float atessuresi;
 
     void Start()
     {
@@ -17,8 +21,13 @@ public class enemy_control : MonoBehaviour {
     }
 
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    
+    void FixedUpdate () {
+        while (true)
+        {
+
+            ateszamanı = Time.time + atessuresi;
+            Instantiate(mermi, MermiNereden.position, Quaternion.identity);
+        }
+    }
 }
