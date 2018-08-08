@@ -21,12 +21,18 @@ public class player_control : MonoBehaviour {
     public Transform MermiNereden;
     public GameObject patlama;
     public Text health;
+    public Text gameover;
     int sayac = 0;
     int can = 3;
-	void Start () {
+    GameObject oyunkontrol;
+    oyunkontrol kontrol;
+
+    void Start () {
         fizik = GetComponent<Rigidbody>();
         health.text = "health = 3";
-        
+        oyunkontrol = GameObject.FindGameObjectWithTag("oyunkontrol");
+        kontrol = oyunkontrol.GetComponent<oyunkontrol>();
+
 
     }
 
@@ -41,6 +47,7 @@ public class player_control : MonoBehaviour {
             {
                 Destroy(gameObject);
                 Instantiate(patlama, transform.position, transform.rotation);
+                gameover.text = ("Game Over. Score= " + kontrol.score);
             }
         }
     }
@@ -54,12 +61,16 @@ public class player_control : MonoBehaviour {
     }
 
     void FixedUpdate () {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
+        //pc
+        //horizontal = Input.GetAxis("Horizontal");
+        //vertical = Input.GetAxis("Vertical");
+        //vec = new Vector3(horizontal, 0, vertical);
 
-        vec = new Vector3(horizontal, 0, vertical);
 
-        fizik.velocity = vec*karakterhiz;
+        Vector3 acceleration = Input.acceleration;
+        Vector3 movement = new Vector3(acceleration.x, 0, acceleration.y);
+
+        fizik.velocity = movement*karakterhiz;
         fizik.position = new Vector3(Mathf.Clamp(fizik.position.x, minX, maxX), 0.0f, Mathf.Clamp(fizik.position.z, minZ, maxZ));
         fizik.rotation = Quaternion.Euler(0, 0, fizik.velocity.x*egim);
 		

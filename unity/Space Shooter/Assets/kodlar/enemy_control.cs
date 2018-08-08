@@ -10,11 +10,15 @@ public class enemy_control : MonoBehaviour {
     public GameObject mermi;
     public Transform MermiNereden;
     public float atessuresi;
+    GameObject oyunkontrol;
+    oyunkontrol kontrol;
 
     void Start()
     {
         fizik = GetComponent<Rigidbody>();
         fizik.velocity = transform.forward * hız;
+        oyunkontrol = GameObject.FindGameObjectWithTag("oyunkontrol");
+        kontrol = oyunkontrol.GetComponent<oyunkontrol>();
 
 
 

@@ -12,7 +12,7 @@ public class oyunkontrol : MonoBehaviour {
     public float baslangıcbekleme;
     public float olusturmabekleme;
     public float dongubekleme;
-    int score;
+    public int score;
     public Text text;
     bool oyunbittikontrol=false;
     bool yenidenbaslakontrol = false;
@@ -92,4 +92,5 @@ public class oyunkontrol : MonoBehaviour {
         gameover.text = ("Game Over. Score= "+score);
         text.text = "score = " + score + "   Press R to restart.";
     }
+    
 }
