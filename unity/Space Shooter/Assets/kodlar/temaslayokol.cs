@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class temaslayokol : MonoBehaviour {
     public float sayac;
@@ -8,7 +9,8 @@ public class temaslayokol : MonoBehaviour {
 	public GameObject player_patlama;
     GameObject oyunkontrol;
     oyunkontrol kontrol;
-   
+    public Text health;
+
     private void Start()
     {
         oyunkontrol = GameObject.FindGameObjectWithTag("oyunkontrol");
@@ -35,6 +37,7 @@ public class temaslayokol : MonoBehaviour {
         {
             Instantiate(player_patlama, other.transform.position, other.transform.rotation);
             kontrol.oyunbitti();
+            health.text = "health = 0";
         }
     }
 

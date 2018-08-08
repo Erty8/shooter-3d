@@ -66,11 +66,10 @@ public class oyunkontrol : MonoBehaviour {
                 Vector3 vec1 = new Vector3(Random.Range(-randomPos.x, randomPos.x), 0, randomPos.z);
                 Instantiate(Enemy, vec1,Quaternion.Euler(0,180,0));
                 yield return new WaitForSeconds(6);
-                if (oyunbittikontrol)
-                    break;
+                
 
             }
-            gameover.text = "Stage Done";
+            gameover.text = "Stage Done. Score= "+score;
             //yield return new WaitForSeconds(5);
             if (oyunbittikontrol)
                 yenidenbaslakontrol = true;
@@ -90,7 +89,7 @@ public class oyunkontrol : MonoBehaviour {
     {
         Debug.Log("oyun bitti");
         oyunbittikontrol = true;
-        gameover.text = ("Game Over");
+        gameover.text = ("Game Over. Score= "+score);
         text.text = "score = " + score + "   Press R to restart.";
     }
 }

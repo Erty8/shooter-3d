@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemy_yokol : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class enemy_yokol : MonoBehaviour {
     public GameObject player_patlama;
     GameObject oyunkontrol;
     oyunkontrol kontrol;
+    public Text health;
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class enemy_yokol : MonoBehaviour {
         if (other.tag == "Player")
         {
             Instantiate(player_patlama, other.transform.position, other.transform.rotation);
+            health.text = "health = 0";
             kontrol.oyunbitti();
         }
     }
